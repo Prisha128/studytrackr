@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+</head>
+<body>
+    <div id="navbar"></div>
+
+<script>
+    fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar").innerHTML = data;
+        });
+</script>
+    <h1 id ="timerTitle">Pomodoro Timer</h1>
+    <div id = "pomodoro-description">
+    <p>How it works: </p>
+        <ol>
+            <li>Work for 25 minutes</li>
+            <li>A 5 minute break time will begin</li>
+            <li>After 4 cycles, a 15 minute break will begin</li>
+            <li>Repeat</li>
+        </ol>
+    </div>
+    <div id ="container">
+        <div id = "display">
+            25:00
+        </div>
+        <div id = "controls">
+            <button id = "start" onclick = "start()">Start</button>
+            <button id = "pause" onclick = "pause()">Pause</button>
+            <button id = "reset" onclick = "reset()">Reset</button>
+        </div>
+
+    </div>
+    <script src = "script.js"></script>
+</body>
+</html>
