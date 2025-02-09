@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Trackr</title>
+</head>
+<body>
+    <div id="navbar"></div>
+
+<script>
+    fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar").innerHTML = data;
+        });
+</script>
+        <h1 id = "mainTitle">Study Trackr</h1>
+        <h3>Welcome to the Study Trackr Website - Where you can study smarter, not harder!</h3>
+        <h2 id = "streak-display">🔥 Study Streak: 0 Days 🔥</h2>
+        <button id = "studyButton" onClick="studyStreakButton()">Click me if you've studied today!</button>
+
+    <script src = "script.js" defer></script>
+</body>
+</html>
