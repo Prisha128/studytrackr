@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class = "center-box"> 
+    <div id = flashcard-body>
+    <div id="navbar"></div>
+    <div class="flashcard-container">
+        <h1>Flashcard Quiz</h1>
+        <div id="flashcard" class="flashcard">
+            <div class="front">
+                <p id="question">Questions will appear here</p>
+            </div>
+            <div class="back">
+                <p id="answer">Answers will appear here</p>
+            </div>
+            <button id="flip-card">Flip Card</button>
+            <button id=""next-card">Next</button>
+        </div>
+    </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar").innerHTML = data;
+            });
+    </script>
+    <ul class="tabs">
+        <li><a href="index.html" class="tab">Home</a></li>
+        <li><a href="pomodoro.html" class="tab">Pomodoro Timer</a></li>
+        <li><a href="flashcards.html" class="tab">Flashcards</a></li>
+    </ul>
+</body>
+
+</html>
