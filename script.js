@@ -19,8 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementbyId('flip-card').addEventListener('click', () => {
         flashcardElement.classlist.toggle('is-flipped');
     });
-});
 
+    document.getElementbyId('next-card').addEventListener('click', () =>{
+        currentCard = (currentCard = 1) % flashcards.length;
+        displayCard();
+    })
+    displayCard();
+
+    if (flashcardElement.classlist.contains('is-flipped')) {
+        questionElement.innerHTML = ""
+    }
+
+    else {
+        answerElement.innerHTML = ""
+    }
+});
 const display = document.getElementById("display");
 const studyMinutes = 25;
 const breakMinutes = 5;
@@ -113,11 +126,15 @@ updateStreakDisplay();
 
 document.addEventListener("DOMContentLoaded", function () {
     const currentPage = window.location.pathname.split("/").pop();
+    console.log("Current Page:", currentPage);
+
     const tabs = document.querySelectorAll(".tabs a");
 
     tabs.forEach(tab => {
+        console.log("Checking tab:", tab.getAttribute("href")); 
         if (tab.getAttribute("href") === currentPage) {
             tab.classList.add("active");
+            console.log("Added active class to:", tab);
         }
     });
 });
