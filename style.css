@@ -1,0 +1,305 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: hsl(0, 0%, 90%);
+    padding-top: 30px;
+    margin: 0;
+}
+.center-box {
+    font-family: sans-serif;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg,hsl(0, 0%, 50%), hsl(0, 0%, 25%));
+    margin: 0;
+    overflow: hidden;
+}
+.flashcard-container {
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin-bottom: 60px;
+}
+#flashcard {
+    width: 90px;
+    height: 180px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    margin: 0 auto;
+}
+#flashcard.is-flipped {
+    transform: rotateY(100deg);
+}
+.flashcard div {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    background: linear gradient(135deg, #f5f7fa, #c3cfe2);
+    display: flex;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0.1);
+    font-size: 1.1em;
+}
+#back {
+    transform: rotateY(100deg);
+}
+button {
+    margin: 10px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background-color: hsl(0, 56%, 85%);
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    
+}
+button:hover {
+    background-color: hsl(0, 51%, 88%);
+}
+button:active {
+    transform: scale(0.95);
+}
+#pomodoro-description {
+    font-family: Helvetica;
+    font-size: 20px;
+    width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    position: relative;
+    top: -40px;
+    text-align: left;
+    border: 3px solid hsl(0, 0%, 25%);
+}
+#pomodoro-description p {
+    text-align: center;
+}
+
+#pomodoro-description ol {
+    list-style-type: decimal;
+    padding-left: 0;
+    margin: 0;
+    counter-reset: list-item;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-left: 150px;
+}
+
+#pomodoro-description li {
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    text-align: left;
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+#pomodoro-description li::before {
+    content: counter(list-item) ". ";
+    counter-increment: list-item;
+    margin-right: 10px;
+}
+#timerTitle {
+    font-family: Helvetica;
+    font-size: 90px;
+    color: hsl(0, 0%, 25%);
+    padding-top: 0;
+    position: relative;
+    top: -10px;
+}
+
+#mainTitle {
+    font-size: 90px;
+    font-family: Helvetica;
+    color: hsl(0, 0%, 25%);
+    margin-top: 50px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid hsl(0, 0%, 25%);
+    border-radius: 30px;
+    padding: 20px;
+    background-color: hsl(0, 0%, 100%);
+}
+
+#display {
+    font-size: 10rem;
+    font-family: Monospace;
+    color: hsl(0, 0%, 30%);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#controls button {
+    font-size: 2rem;
+    font-style: Arial;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 5px;
+    min-width: 175px;
+    border: none;
+    border-radius: 40px;
+    color: white;
+}
+
+#start {
+    background-color: hsl(120, 100%, 25%);
+    transition: background-color 0.5s ease;
+}
+
+#start:hover {
+    background-color: hsl(120, 100%, 35%);
+    cursor: pointer;
+}
+
+#pause {
+    background-color: hsl(195, 60%, 65%);
+    transition: background-color 0.5s ease;
+}
+
+#pause:hover {
+    background-color: hsl(195, 60%, 75%);
+    cursor: pointer;
+}
+
+#reset {
+    background-color: hsl(0, 100%, 50%);
+    transition: background-color 0.5s ease;
+}
+
+#reset:hover {
+    background-color: hsl(0, 100%, 60%);
+    cursor: pointer;
+}
+
+..tabs {
+    font-family: Arial;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: hsl(0, 0%, 90%);
+    border-bottom: 2px solid hsl(0, 0%, 25%);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.tabs li {
+    margin-right: 120px;
+    margin-left: 120px;
+    padding: 0;
+}
+
+.tabs a {
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+    color: black;
+    font-weight: bold;
+    background-color: hsl(0, 0%, 90%);
+    border-radius: 5px 5px 0 0;
+    transition: background-color 0.3s;
+}
+
+.tabs a:hover {
+    background-color: hsl(0, 0%, 80%);
+}
+
+.tabs a.active {
+    background-color: hsl(0, 0%, 70%) !important; 
+    font-weight: bold;
+}
+
+.tabs a.active:hover {
+    background-color: hsl(0, 0%, 70%) !important; 
+}
+#button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+} 
+.button {
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(0, 0%, 25%);
+    padding: 10px 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana;
+    font-size: 20px;
+    min-width: 175px;
+    min-height: 30px;
+    margin: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    font-weight: bold;
+    border: 3px solid hsl(0, 0%, 25%);
+}
+.button:hover {
+    background-color: hsl(0, 0%, 95%);
+    cursor: pointer;
+    color: hsl(0, 0%, 25%);
+}
+h3 {
+    font-size: 25px;
+    font-family: Arial;
+    color: hsl(0, 0%, 25%);
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    top: -25px;
+}
+#studyButton{
+    font-family: Helvetica;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(0, 0%, 25%);
+    border: 3px solid hsl(0, 0%, 25%);
+    border-radius: 15px;
+    width: 250px;
+    margin-top: 15px;
+    height:75px;
+}
+#studyButton:hover {
+    background-color: hsl(0, 0%, 95%);
+    color:hsl(0, 0%, 25%);
+    cursor: pointer;
+}
+#streak-display{
+    font-family: Helvetica;
+    font-size: 30px;
+    color: hsl(0, 0%, 0%);
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+}
