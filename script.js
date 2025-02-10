@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { question: "What is the smallest country in the world?", answer: "Vatican City" },
         { question: "Who discovered gravity?", answer: "Isaac Newton" },
         { question: "How many legs does a spider have?", answer: "8" },
-        { question: "What is the chemical symbol for gold?", answer: "Au" },
+        { question: "What is the chemical symbol for gold?", answer: "AU"},
         { question: "Who was the first president of the United States?", answer: "George Washington" },
         { question: "What is the speed of light in vacuum (approx in m/s)?", answer: "299,792,458 m/s" },
         { question: "Which planet is known as the Red Planet?", answer: "Mars" },
@@ -44,27 +44,25 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayCard() {
         questionElement.textContent = flashcards[currentCard].question;
         answerElement.textContent = flashcards[currentCard].answer;
-        flashcardElement.classlist.remove('is-flipped');
+        flashcardElement.classList.remove('is-flipped');
 
-        questionElement.style.display = 'block';
         answerElement.style.display = 'none';
+        questionElement.style.display = 'block';
+        questionElement.style.visibility = "visible"
     }
 
     document.getElementById('flip-card').addEventListener('click', function() {
+        console.log(questionElement.style.display)
         console.log('the button was clicked.')
 
         if (answerElement.style.display === 'none') {
-            // Show answer, hide question
             answerElement.style.display = 'block';
-            questionElement.style.display = 'none';
         } else {
-            // Show question, hide answer
             answerElement.style.display = 'none';
             questionElement.style.display = 'block';
         }
-        answerElement.style.display = 'block'
-        //flashcardElement.classlist.toggle('is-flipped');
-    });
+        questionElement.style.display = 'block';
+});
 
     document.getElementById('next-card').addEventListener('click', () => {
         currentCard = (currentCard + 1) % flashcards.length;
@@ -75,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     displayCard();
 
-    if (flashcardElement.classlist.contains('is-flipped')) {
+    if (flashcardElement.classList.contains('is-flipped')) {
         questionElement.innerHTML = ""
     }
 
