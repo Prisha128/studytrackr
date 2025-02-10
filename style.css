@@ -8,16 +8,16 @@ body {
     padding-top: 30px;
     margin: 0;
 }
+
 .center-box {
-    font-family: sans-serif;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background-color: hsl(0, 0%, 90%);
     margin: 0;
     overflow: hidden;
 }
+
 .flashcard-container {
     text-align: center;
     background-color: white;
@@ -27,7 +27,11 @@ body {
     max-width: 300px;
     margin-bottom: 60px;
 }
+
 #flashcard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 300px;
     height: 200px;
     position: relative;
@@ -35,63 +39,78 @@ body {
     transition: transform 0.6s;
     margin: 0 auto;
 }
+
 #flashcard.is-flipped {
-    transform: rotateY(100deg);
+    transform: rotateY(180deg);
 }
+
 .flashcard div {
     position: absolute;
     width: 100%;
     height: 70%;
-    backface-visibility: hidden;
+    backface-visibility: visible;
     border-radius: 15px;
-    background: linear gradient(135deg, #f5f7fa, #c3cfe2);
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     display: flex;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0.1);
-    font-size: 1.1em;
+    font-size: 1.5rem;
 }
-#back {
-    transform: rotateY(100deg);
+
+.back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-align: center;
 }
+
 #question {
-    margin: 50px;
-    padding: 6px 10px;
-    border:none;
-}
-#answer {
-    display: none;
+    display: block;
     margin: 12px;
     padding: 12px 3px;
     border:none;
 }
+#answer {
+    display: block;
+    margin: 12px;
+    padding: 12px 3px;
+    border:none;
+}
+
 #next-card {
     margin: 5px;
     padding: 10px 10px;
-    border: none;
-    border-radius: 25px;
-    background-color: hsl(0, 56%, 85%);
-    color: white;
+    border: 2px solid hsl(0, 0%, 25%);
+    border-radius: 15px;
+    background-color: hsl(0, 0%, 90%);
+    color: rgb(0, 0, 0);
     font-size: 1.1em;
+    min-width: 75px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
+
 #flip-card {
     margin: 5px;
     padding: 10px 10px;
-    border: none;
-    border-radius: 25px;
-    background-color: hsl(0, 56%, 85%);
-    color: white;
+    border: 2px solid hsl(0, 0%, 25%);
+    border-radius: 15px;
+    background-color: hsl(0, 0%, 90%);
+    color: rgb(0, 0, 0);
     font-size: 1.1em;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition:0.3s, transform 0.2s;
 }
+
 button:hover {
-    background-color: hsl(0, 51%, 88%);
+    background-color: hsl(0, 0%, 95%);
 }
+
 button:active {
     transform: scale(0.95);
 }
+
 #pomodoro-description {
     font-family: Helvetica;
     font-size: 20px;
@@ -105,6 +124,7 @@ button:active {
     text-align: left;
     border: 3px solid hsl(0, 0%, 25%);
 }
+
 #pomodoro-description p {
     text-align: center;
 }
@@ -136,6 +156,7 @@ button:active {
     counter-increment: list-item;
     margin-right: 10px;
 }
+
 #timerTitle {
     font-family: Helvetica;
     font-size: 90px;
@@ -251,20 +272,22 @@ button:active {
 }
 
 .tabs a.active {
-    background-color: hsl(0, 0%, 70%) !important; 
+    background-color: hsl(0, 0%, 70%) !important;
     font-weight: bold;
 }
 
 .tabs a.active:hover {
-    background-color: hsl(0, 0%, 70%) !important; 
+    background-color: hsl(0, 0%, 70%) !important;
 }
+
 #button-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     text-align: center;
-} 
+}
+
 .button {
     background-color: hsl(0, 0%, 100%);
     color: hsl(0, 0%, 25%);
@@ -285,11 +308,13 @@ button:active {
     font-weight: bold;
     border: 3px solid hsl(0, 0%, 25%);
 }
+
 .button:hover {
     background-color: hsl(0, 0%, 95%);
     cursor: pointer;
     color: hsl(0, 0%, 25%);
 }
+
 h3 {
     font-size: 25px;
     font-family: Arial;
@@ -299,7 +324,8 @@ h3 {
     position: relative;
     top: -25px;
 }
-#studyButton{
+
+#studyButton {
     font-family: Helvetica;
     font-size: 20px;
     font-weight: bold;
@@ -309,18 +335,29 @@ h3 {
     border-radius: 15px;
     width: 250px;
     margin-top: 15px;
-    height:75px;
+    height: 75px;
 }
+
 #studyButton:hover {
     background-color: hsl(0, 0%, 95%);
-    color:hsl(0, 0%, 25%);
+    color: hsl(0, 0%, 25%);
     cursor: pointer;
 }
-#streak-display{
+
+#streak-display {
     font-family: Helvetica;
     font-size: 30px;
     color: hsl(0, 0%, 0%);
     margin-top: 0;
     margin-bottom: 0;
     position: relative;
+}
+
+#flashTitle {
+    font-family: Helvetica;
+    font-size: 90px;
+    color: hsl(0, 0%, 25%);
+    padding-top: 0;
+    position: relative;
+    margin-top: 30px;
 }
