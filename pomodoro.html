@@ -1,42 +1,335 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Timer</title>
-</head>
-<body>
-    <div id="navbar"></div>
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: hsl(0, 0%, 90%);
+    padding-top: 30px;
+    margin: 0;
+}
+.center-box {
+    font-family: sans-serif;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: hsl(0, 0%, 90%);
+    margin: 0;
+    overflow: hidden;
+}
+.flashcard-container {
+    text-align: center;
+    background-color: white;
+    padding: 100px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin-bottom: 60px;
+}
+#flashcard {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    margin: 0 auto;
+}
+#flashcard.is-flipped {
+    transform: rotateY(100deg);
+}
+.flashcard div {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    background: linear gradient(135deg, #f5f7fa, #c3cfe2);
+    display: flex;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0.1);
+    font-size: 1.1em;
+}
+#back {
+    transform: rotateY(100deg);
+}
+#question {
+    display: block;
+    margin: 50px;
+    padding: 6px 10px;
+    border:none;
+}
+#answer {
+    display: none;
+    margin: 12px;
+    padding: 12px 3px;
+    border:none;
+}
+#next-card {
+    margin: 5px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: hsl(0, 56%, 85%);
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+#flip-card {
+    margin: 5px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: hsl(0, 56%, 85%);
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+button:hover {
+    background-color: hsl(0, 51%, 88%);
+}
+button:active {
+    transform: scale(0.95);
+}
+#pomodoro-description {
+    font-family: Helvetica;
+    font-size: 20px;
+    width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    position: relative;
+    top: -40px;
+    text-align: left;
+    border: 3px solid hsl(0, 0%, 25%);
+}
+#pomodoro-description p {
+    text-align: center;
+}
 
-<script>
-    fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("navbar").innerHTML = data;
-        });
-</script>
-    <h1 id ="timerTitle">Pomodoro Timer</h1>
-    <div id = "pomodoro-description">
-    <p>How it works: </p>
-        <ol>
-            <li>Work for 25 minutes</li>
-            <li>A 5 minute break time will begin</li>
-            <li>After 4 cycles, a 15 minute break will begin</li>
-            <li>Repeat</li>
-        </ol>
-    </div>
-    <div id ="container">
-        <div id = "display">
-            25:00
-        </div>
-        <div id = "controls">
-            <button id = "start" onclick = "start()">Start</button>
-            <button id = "pause" onclick = "pause()">Pause</button>
-            <button id = "reset" onclick = "reset()">Reset</button>
-        </div>
+#pomodoro-description ol {
+    list-style-type: decimal;
+    padding-left: 0;
+    margin: 0;
+    counter-reset: list-item;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-left: 150px;
+}
 
-    </div>
-    <script src = "script.js"></script>
-</body>
-</html>
+#pomodoro-description li {
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    text-align: left;
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+#pomodoro-description li::before {
+    content: counter(list-item) ". ";
+    counter-increment: list-item;
+    margin-right: 10px;
+}
+#timerTitle {
+    font-family: Helvetica;
+    font-size: 90px;
+    color: hsl(0, 0%, 25%);
+    padding-top: 0;
+    position: relative;
+    top: -10px;
+}
+
+#mainTitle {
+    font-size: 90px;
+    font-family: Helvetica;
+    color: hsl(0, 0%, 25%);
+    margin-top: 50px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid hsl(0, 0%, 25%);
+    border-radius: 30px;
+    padding: 20px;
+    background-color: hsl(0, 0%, 100%);
+}
+
+#display {
+    font-size: 10rem;
+    font-family: Monospace;
+    color: hsl(0, 0%, 30%);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#controls button {
+    font-size: 2rem;
+    font-style: Arial;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 5px;
+    min-width: 175px;
+    border: none;
+    border-radius: 40px;
+    color: white;
+}
+
+#start {
+    background-color: hsl(120, 100%, 25%);
+    transition: background-color 0.5s ease;
+}
+
+#start:hover {
+    background-color: hsl(120, 100%, 35%);
+    cursor: pointer;
+}
+
+#pause {
+    background-color: hsl(195, 60%, 65%);
+    transition: background-color 0.5s ease;
+}
+
+#pause:hover {
+    background-color: hsl(195, 60%, 75%);
+    cursor: pointer;
+}
+
+#reset {
+    background-color: hsl(0, 100%, 50%);
+    transition: background-color 0.5s ease;
+}
+
+#reset:hover {
+    background-color: hsl(0, 100%, 60%);
+    cursor: pointer;
+}
+
+.tabs {
+    font-family: Arial;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: hsl(203, 50%, 60%);
+    border-bottom: 3px solid hsl(203, 51%, 40%);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.tabs li {
+    margin-right: 120px;
+    margin-left: 120px;
+    padding: 0;
+}
+
+.tabs a {
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+    color: black;
+    font-weight: bold;
+    background-color: hsl(203, 50%, 60%);
+    border-radius: 5px 5px 0 0;
+    transition: background-color 0.3s;
+}
+
+.tabs a:hover {
+    background-color: hsl(203, 50%, 50%);
+}
+
+.tabs a.active {
+    background-color: hsl(0, 0%, 70%) !important; 
+    font-weight: bold;
+}
+
+.tabs a.active:hover {
+    background-color: hsl(0, 0%, 70%) !important; 
+}
+#button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+} 
+.button {
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(0, 0%, 25%);
+    padding: 10px 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana;
+    font-size: 20px;
+    min-width: 175px;
+    min-height: 30px;
+    margin: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    font-weight: bold;
+    border: 3px solid hsl(0, 0%, 25%);
+}
+.button:hover {
+    background-color: hsl(0, 0%, 95%);
+    cursor: pointer;
+    color: hsl(0, 0%, 25%);
+}
+h3 {
+    font-size: 25px;
+    font-family: Arial;
+    color: hsl(0, 0%, 25%);
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    top: -25px;
+}
+#studyButton{
+    font-family: Helvetica;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(0, 0%, 25%);
+    border: 3px solid hsl(0, 0%, 25%);
+    border-radius: 15px;
+    width: 250px;
+    margin-top: 15px;
+    height:75px;
+}
+#studyButton:hover {
+    background-color: hsl(0, 0%, 95%);
+    color:hsl(0, 0%, 25%);
+    cursor: pointer;
+}
+#streak-display{
+    font-family: Helvetica;
+    font-size: 30px;
+    color: hsl(0, 0%, 0%);
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+}
+#flashTitle{
+    font-family: Helvetica;
+    font-size: 90px;
+    color: hsl(0, 0%, 25%);
+    padding-top: 0;
+    position: relative;
+    top: -10px;
+}
