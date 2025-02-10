@@ -45,23 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
         questionElement.textContent = flashcards[currentCard].question;
         answerElement.textContent = flashcards[currentCard].answer;
         flashcardElement.classList.remove('is-flipped');
-
-        answerElement.style.display = 'none';
-        questionElement.style.display = 'block';
-        questionElement.style.visibility = "visible"
     }
 
     document.getElementById('flip-card').addEventListener('click', function() {
-        console.log(questionElement.style.display)
+        console.log(answerElement.style.display)
         console.log('the button was clicked.')
 
         if (answerElement.style.display === 'none') {
             answerElement.style.display = 'block';
+            questionElement.style.display = 'none';
+            console.log(answerElement.style.display)
+
         } else {
             answerElement.style.display = 'none';
             questionElement.style.display = 'block';
         }
-        questionElement.style.display = 'block';
 });
 
     document.getElementById('next-card').addEventListener('click', () => {
