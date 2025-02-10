@@ -6,22 +6,40 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let currentCard = 0;
-    const flashcardElement = document.getElementbyId('flashcard');
-    const questionElement = document.getElementbyId('question');
-    const answerElement = document.getElementbyId('answer');
+    const flashcardElement = document.getElementById('flashcard'); 
+    const questionElement = document.getElementById('question');
+    const answerElement = document.getElementById('answer');    
 
     function displayCard() {
         questionElement.textContent = flashcards[currentCard].question;
         answerElement.textContent = flashcards[currentCard].answer;
         flashcardElement.classlist.remove('is-flipped');
+
+        questionElement.style.display = 'block';
+        answerElement.style.display = 'none';
     }
 
-    document.getElementbyId('flip-card').addEventListener('click', () => {
-        flashcardElement.classlist.toggle('is-flipped');
+    document.getElementById('flip-card').addEventListener('click', function() {
+        console.log('the button was clicked.')
+
+        if (answerElement.style.display === 'none') {
+            // Show answer, hide question
+            answerElement.style.display = 'block';
+            questionElement.style.display = 'none';
+        } else {
+            // Show question, hide answer
+            answerElement.style.display = 'none';
+            questionElement.style.display = 'block';
+        }
+        answerElement.style.display = 'block'
+        //flashcardElement.classlist.toggle('is-flipped');
     });
 
-    document.getElementbyId('next-card').addEventListener('click', () =>{
-        currentCard = (currentCard = 1) % flashcards.length;
+    document.getElementById('next-card').addEventListener('click', () => {
+        currentCard = (currentCard + 1) % flashcards.length;
+
+        questionElement.style.display = 'block';
+        answerElement.style.display = 'none';   
         displayCard();
     })
     displayCard();
