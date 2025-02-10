@@ -6,3 +6,4 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+#we didn't use ai because we didn't have time
